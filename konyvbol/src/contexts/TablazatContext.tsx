@@ -1,8 +1,10 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { KONYVEKLISTAJA, type KONYTYPE  } from "../assets/adatok";
+export type UJKONYVTYPE = Omit<KONYTYPE,"id">;
 interface TABLAZATContextvalue{
     konyvlista:KONYTYPE[];
     torlol_item:(id:number)=>void;
+    Konyhozzaadas:(konyv:UJKONYVTYPE)=>()
 }
 export const TablazatContext = createContext<TABLAZATContextvalue | undefined>(undefined)
 interface TablazatProvideProps{
@@ -14,8 +16,14 @@ export function TablazatProvider({children}:TablazatProvideProps){
         console.log(id)
         setTablazat(elozolista => elozolista.filter(Konyv => Konyv.id !==id))
     }
+    function Konyhozzaadas(Konyv:UJKONYVTYPE){
+        setTablazat(pluszlista =>{ const ujid=Math.max(0, 
+            ...pluszlista.map(k=>k.id))+1; 
+            return [...pluszlista,{...Konyv,id:ujid}];
+    })
+    }
     return(
-        <TablazatContext.Provider value={{torlol_item, konyvlista}}>
+        <TablazatContext.Provider value={{torlol_item, konyvlista, Konyhozzaadas}}>
             {children}
         </TablazatContext.Provider>
     )
