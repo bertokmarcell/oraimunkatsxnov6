@@ -4,7 +4,7 @@ export type UJKONYVTYPE = Omit<KONYTYPE,"id">;
 interface TABLAZATContextvalue{
     konyvlista:KONYTYPE[];
     torlol_item:(id:number)=>void;
-    Konyhozzaadas:(konyv:UJKONYVTYPE)=>()
+    Konyhozzaadas:(konyv:UJKONYVTYPE)=>void;
 }
 export const TablazatContext = createContext<TABLAZATContextvalue | undefined>(undefined)
 interface TablazatProvideProps{
@@ -20,6 +20,7 @@ export function TablazatProvider({children}:TablazatProvideProps){
         setTablazat(pluszlista =>{ const ujid=Math.max(0, 
             ...pluszlista.map(k=>k.id))+1; 
             return [...pluszlista,{...Konyv,id:ujid}];
+            //const newlist =[...konyvlista] ujlista.push({...konyv,id:ujid}) settablazat(ujlista)
     })
     }
     return(
