@@ -24,7 +24,7 @@ export default function Konyvek(){
                         return( <Konyv elem={e} key={i} />)
                         }
                         )
-                        };
+                        }
                 </tbody>
                 </table>
         </div>

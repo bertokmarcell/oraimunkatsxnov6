@@ -27,4 +27,6 @@ export const KONYVEKLISTAJA:KONYTYPE[]=[{
     id:9,cim:"Árvaluták idiótáknak",szerzo:"Ár Áron",ar:23,darabszam:300
 },{
     id:10,cim:"Férfi nevek babáknak",szerzo:"Áron Áron",ar:2000,darabszam:800
+},{
+    id:10,cim:"filózófikai kérdések",szerzo:"Milyen Áron",ar:2000,darabszam:800
 }]
